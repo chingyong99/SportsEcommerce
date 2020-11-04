@@ -126,6 +126,10 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, CartActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.chat_icon){
+            Intent intent = new Intent(HomeActivity.this,VoiceAndVideoActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

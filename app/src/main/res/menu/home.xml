@@ -12,6 +12,13 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/chat_icon"
+        android:orderInCategory="100"
+        android:icon="@drawable/message_icon"
+        android:title="chat"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/cart_icon"
         android:orderInCategory="100"
         android:icon="@drawable/nav_cart"
