@@ -45,6 +45,8 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Check();
+                Intent intent = new Intent(ConfirmFinalOrderActivity.this, PaymentProcessActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -107,11 +109,11 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
                                     {
                                         Toast.makeText(ConfirmFinalOrderActivity.this, "The order has been placed successfully", Toast.LENGTH_SHORT).show();
 
-                                        Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-                                        //So the user cannot come back to this activity again
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
-                                        finish();
+//                                        Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
+//                                        //So the user cannot come back to this activity again
+//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                                        startActivity(intent);
+//                                        finish();
                                     }
                                 }
                             });
