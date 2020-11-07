@@ -20,9 +20,10 @@
         android:layout_height="52dp"
         android:layout_margin="12dp"
         android:onClick="onButtonClick"
-        android:background="#000000"
-        android:textColor="#FFFFFF"
-        android:text="Join"/>
+        android:background="@drawable/button"
+        android:textColor="#000000"
+        android:text="Join"
+        android:textSize="17sp"/>
 
 
 </LinearLayout>

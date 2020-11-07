@@ -115,16 +115,20 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.setting_icon){
-            Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
-            startActivity(intent);
+            if (!type.equals("Seller")){
+                Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
         }
         if (id == R.id.search_icon){
             Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
             startActivity(intent);
         }
         if (id == R.id.cart_icon){
-            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
-            startActivity(intent);
+            if (!type.equals("Seller")){
+                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
         }
         if (id == R.id.chat_icon){
             Intent intent = new Intent(HomeActivity.this,VoiceAndVideoActivity.class);
