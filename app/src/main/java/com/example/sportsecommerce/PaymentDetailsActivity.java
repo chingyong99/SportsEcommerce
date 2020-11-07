@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 
@@ -30,6 +31,9 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         try{
             JSONObject jsonObject = new JSONObject(intent.getStringExtra("PaymentDetails"));
             showDetails(jsonObject.getJSONObject("response"), intent.getStringExtra("PaymentAmount"));
+            Toast.makeText(PaymentDetailsActivity.this,"Payment Successfully", Toast.LENGTH_SHORT).show();
+            Intent homeIntent = new Intent(PaymentDetailsActivity.this, HomeActivity.class);
+            startActivity(homeIntent);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -46,4 +50,5 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 }

@@ -19,6 +19,7 @@ public class SellerCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_category);
+        setTitle("Seller Activity");
 
         viewOrdersBtn = (Button) findViewById(R.id.view_orders_btn);
         logoutBtn = (Button) findViewById(R.id.seller_logout_btn);

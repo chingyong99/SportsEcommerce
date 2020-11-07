@@ -5,33 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/test_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="100dp"
-        android:padding="15dp"
-        android:background="@drawable/button"
-        android:text="Test Register"
-        android:textSize="17dp"
-        />
-
-    <Button
-        android:id="@+id/test_join"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/test_register"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="100dp"
-        android:padding="15dp"
-        android:background="@drawable/button"
-        android:text="Test Join"
-        android:textSize="17dp"
-        />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="130dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ck"/>
 
 </RelativeLayout>

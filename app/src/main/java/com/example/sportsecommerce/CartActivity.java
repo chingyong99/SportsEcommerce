@@ -170,7 +170,6 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-
                     String shippingStatus = dataSnapshot.child("status").getValue().toString();
                     String userName = dataSnapshot.child("name").getValue().toString();
 
@@ -182,7 +181,6 @@ public class CartActivity extends AppCompatActivity {
                         txtMsg1.setVisibility(View.VISIBLE);
                         txtMsg1.setText("Your final has been shipped successfully, you shall receive your order soon");
                         continueBtn.setVisibility(View.GONE);
-
 
                     }
                     else if (shippingStatus.equals("not shipped")){

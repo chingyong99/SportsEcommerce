@@ -46,6 +46,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Check();
                 Intent intent = new Intent(ConfirmFinalOrderActivity.this, PaymentProcessActivity.class);
+                intent.putExtra("Total Price", String.valueOf(totalAmount));
                 startActivity(intent);
             }
         });
@@ -121,6 +122,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -22,81 +23,21 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button testRegister, testJoin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testRegister = (Button) findViewById(R.id.test_register);
-        testJoin = (Button) findViewById(R.id.test_join);
-
-        Paper.init(this);
-
-        testRegister.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        testJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
+            public void run() {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+
+                finish();
             }
-        });
+        }, 2000);
 
-        String userPhoneKey = Paper.book().read(Prevalent.userPhoneKey);
-        String userPasswordKey = Paper.book().read(Prevalent.userPasswordKey);
-
-        if (userPhoneKey != "" && userPasswordKey != "")
-        {
-            if (!TextUtils.isEmpty(userPhoneKey) && !TextUtils.isEmpty(userPasswordKey))
-            {
-                userAccess(userPhoneKey, userPasswordKey);
-            }
-        }
-    }
-
-    private void userAccess(final String phone, final String password)
-    {
-        final DatabaseReference rootRef;
-        rootRef = FirebaseDatabase.getInstance().getReference();
-
-        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("Users").child(phone).exists()) {
-                    //pass value to Users class
-                    Users userData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
-
-                    //Check whether phone and password by user input is equal to database
-                    if (userData.getPhone().equals(phone)) {
-                        if (userData.getPassword().equals(password)) {
-                            Toast.makeText(MainActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                            Prevalent.onlineUser = userData;
-                            startActivity(intent);
-                        }
-                    }
-                } else {
-                    Toast.makeText(MainActivity.this, "This account does not exist, create a new account now", Toast.LENGTH_SHORT).show();
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sportsecommerce.config.Config;
@@ -30,9 +31,9 @@ public class PaymentProcessActivity extends AppCompatActivity {
             .clientId(Config.PALPAL_CLIENT_ID);
 
     Button payNowBtn;
-    EditText editAmount;
+    TextView totalAmountTxt;
 
-    String amount="";
+    String totalAmount ="";
 
     @Override
     protected void onDestroy() {
@@ -45,13 +46,16 @@ public class PaymentProcessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_process);
 
+        totalAmount = getIntent().getStringExtra("Total Price");
         //Start pal pay service
         Intent intent = new Intent(this,PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         startService(intent);
 
         payNowBtn = (Button) findViewById(R.id.total_amount_button);
-        editAmount = (EditText) findViewById(R.id.total_amount_edit);
+        totalAmountTxt = (TextView) findViewById(R.id.total_amount_text);
+
+        totalAmountTxt.setText("RM " + totalAmount);
 
         payNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +67,8 @@ public class PaymentProcessActivity extends AppCompatActivity {
     }
 
     private void processPayment() {
-        amount = editAmount.getText().toString(); //here can put the putextra string
         PayPalPayment payPalPayment = new
-                PayPalPayment(new BigDecimal(String.valueOf(amount)),
+                PayPalPayment(new BigDecimal(String.valueOf(totalAmount)),
                 "MYR", "Total Amount", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
@@ -90,7 +93,7 @@ public class PaymentProcessActivity extends AppCompatActivity {
 
                         startActivity(new Intent(this, PaymentDetailsActivity.class)
                                 .putExtra("PaymentDetails", paymentDetails)
-                                .putExtra("PaymentAmount", amount));   //amount later change
+                                .putExtra("PaymentAmount", totalAmount));   //amount later change
 
                     } catch (JSONException e) {
                         e.printStackTrace();

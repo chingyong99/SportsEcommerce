@@ -12,24 +12,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PaymentDetailsActivity"></activity>
-        <activity android:name=".PaymentProcessActivity" />
-        <activity android:name=".VoiceAndVideoActivity" />
-        <activity android:name=".SellerManageProductsActivity" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".ShowOrderProductsActivity" />
-        <activity android:name=".SellerViewOrderActivity" />
-        <activity android:name=".ConfirmFinalOrderActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".ProductDetailsActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".SellerRegistrationActivity"
+            android:parentActivityName=".LoginActivity"></activity>
+        <activity android:name=".PaymentDetailsActivity" />
+        <activity
+            android:name=".PaymentProcessActivity"
+            android:parentActivityName=".ConfirmFinalOrderActivity" />
+        <activity
+            android:name=".VoiceAndVideoActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".SellerManageProductsActivity"
+            android:parentActivityName=".SellerCategoryActivity" />
+        <activity
+            android:name=".SearchActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".SellerViewOrderActivity"
+            android:parentActivityName=".SellerCategoryActivity" />
+        <activity
+            android:name=".ConfirmFinalOrderActivity"
+            android:parentActivityName=".CartActivity" />
+        <activity
+            android:name=".CartActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:parentActivityName=".UserProfileActivity" />
+        <activity
+            android:name=".SettingActivity"
+            android:parentActivityName=".UserProfileActivity" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".SellerCategoryActivity" />
-        <activity android:name=".AddNewProductActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".AddNewProductActivity"
+            android:parentActivityName=".SellerCategoryActivity" />
+        <activity android:name=".RegisterActivity" android:parentActivityName=".LoginActivity"/>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

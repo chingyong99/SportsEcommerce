@@ -24,12 +24,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SellerViewOrderActivity extends AppCompatActivity {
 
     private RecyclerView ordersList;
-    private DatabaseReference ordersRef;
+    private DatabaseReference ordersRef, cartListRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_view_order);
+        setTitle("Order Details");
 
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
 
@@ -56,18 +57,6 @@ public class SellerViewOrderActivity extends AppCompatActivity {
                         holder.userTotalPrice.setText("Total Amount: " + model.getTotalAmount());
                         holder.userAddress.setText("Shipping Address: " + model.getAddress());
                         holder.userDateTime.setText("Order at: " + model.getDate() + " "+ model.getTime());
-
-                        holder.showOrdersBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                String uID = getRef(position).getKey();
-
-                                Intent intent = new Intent(SellerViewOrderActivity.this, ShowOrderProductsActivity.class);
-                                intent.putExtra("uid", uID);
-                                startActivity(intent);
-                            }
-                        });
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -116,7 +105,6 @@ public class SellerViewOrderActivity extends AppCompatActivity {
     public static class SellerOrdersViewHolder extends RecyclerView.ViewHolder{
 
         public TextView userName, userPhoneNumber, userTotalPrice, userAddress, userDateTime;
-        public Button showOrdersBtn;
 
         public SellerOrdersViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -126,7 +114,6 @@ public class SellerViewOrderActivity extends AppCompatActivity {
             userTotalPrice = itemView.findViewById(R.id.order_total_price);
             userAddress = itemView.findViewById(R.id.order_address);
             userDateTime = itemView.findViewById(R.id.order_date_time);
-            showOrdersBtn = itemView.findViewById(R.id.show_order_products_btn);
 
         }
     }
@@ -134,5 +121,10 @@ public class SellerViewOrderActivity extends AppCompatActivity {
     private void removeOrder(String uID) {
 
         ordersRef.child(uID).removeValue();
+
+        cartListRef = FirebaseDatabase.getInstance().getReference()
+                .child("Cart List").child("Seller View").child(uID).child("Products");
+
+        cartListRef.child("Cart List").removeValue();
     }
 }

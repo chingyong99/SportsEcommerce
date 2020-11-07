@@ -37,7 +37,7 @@ public class SettingActivity extends AppCompatActivity {
 
     private CircleImageView profileImageView;
     private EditText fullNameEditText, userPhoneEditText, addressEditText;
-    private TextView profileChangeTextBtn, closeTextBtn, saveTextButton;
+    private TextView profileChangeTextBtn, saveTextButton;
 
     private Uri imageUri;
     private String myUrl ="";
@@ -57,17 +57,9 @@ public class SettingActivity extends AppCompatActivity {
         userPhoneEditText = (EditText) findViewById(R.id.phone_number_setting);
         addressEditText = (EditText) findViewById(R.id.address_setting);
         profileChangeTextBtn = (TextView) findViewById(R.id.profile_setting_button);
-        closeTextBtn = (TextView) findViewById(R.id.close_setting_button);
         saveTextButton = (TextView) findViewById(R.id.update_setting_button);
 
         userInfoDisplay(profileImageView, fullNameEditText, userPhoneEditText);
-
-        closeTextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         saveTextButton.setOnClickListener(new View.OnClickListener() {
             @Override

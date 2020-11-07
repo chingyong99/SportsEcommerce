@@ -47,6 +47,7 @@ public class AddNewProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
+        setTitle("Add New Product");
 
         //get intent from putExtra in SellerCategoryActivity
         categoryName = getIntent().getExtras().get("Category").toString();

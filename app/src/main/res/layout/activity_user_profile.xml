@@ -66,31 +66,13 @@
         android:text="User Setting"
         android:background="@drawable/button" />
 
-    <ImageView
-        android:id="@+id/order_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/setting_image"
-        android:src="@drawable/orders"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"/>
 
-    <Button
-        android:id="@+id/user_order_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_profile_setting_btn"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="100dp"
-        android:text="Orders"
-        android:background="@drawable/button" />
 
     <ImageView
         android:id="@+id/logout_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@id/order_image"
+        android:layout_below="@id/setting_image"
         android:src="@drawable/logout"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"/>
@@ -99,7 +81,7 @@
         android:id="@+id/user_logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_order_button"
+        android:layout_below="@id/user_profile_setting_btn"
         android:layout_marginTop="50dp"
         android:layout_marginRight="100dp"
         android:layout_marginLeft="100dp"

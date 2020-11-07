@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        setTitle("");
+        setTitle("Search");
 
         inputText = findViewById(R.id.search_product_name);
         searchButton = findViewById(R.id.search_btn);

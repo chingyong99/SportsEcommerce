@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.rey.material.widget.CheckBox;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginPhoneNum, loginPassword;
     private CheckBox checkboxRememberMe;
     private Button loginButton;
-    private TextView sellerLink, notSellerLink;
+    private TextView sellerLink, notSellerLink, signUpLink;
     private String parentNode = "Users";
 
     @Override
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.login_button);
         sellerLink = (TextView) findViewById(R.id.seller_panel);
         notSellerLink = (TextView) findViewById(R.id.not_seller_panel);
-        checkboxRememberMe = (CheckBox) findViewById(R.id.remember_me_checkbox);
+        signUpLink = (TextView) findViewById(R.id.sign_up_btn);
         Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +61,14 @@ public class LoginActivity extends AppCompatActivity {
                 sellerLink.setVisibility(View.INVISIBLE);
                 notSellerLink.setVisibility(View.VISIBLE);
                 parentNode = "Sellers";
+
+                signUpLink.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(LoginActivity.this, SellerRegistrationActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
@@ -70,6 +79,14 @@ public class LoginActivity extends AppCompatActivity {
                 sellerLink.setVisibility(View.VISIBLE);
                 notSellerLink.setVisibility(View.INVISIBLE);
                 parentNode = "Users";
+
+                signUpLink.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
@@ -97,13 +114,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void userLoginSuccess(final String phone, final String password)
     {
-        if(checkboxRememberMe.isChecked())
-        {
-            //store user data into android memory
-            Paper.book().write(Prevalent.userPhoneKey, phone);
-            Paper.book().write(Prevalent.userPasswordKey, password);
-        }
-
         final DatabaseReference rootRef;
         rootRef = FirebaseDatabase.getInstance().getReference();
 

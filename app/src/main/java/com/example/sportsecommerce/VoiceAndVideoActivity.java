@@ -18,6 +18,7 @@ public class VoiceAndVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice_and_video);
+        setTitle("Voice and Video Conferencing");
 
         try {
             JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
