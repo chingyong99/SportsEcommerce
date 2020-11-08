@@ -26,7 +26,6 @@ import io.paperdb.Paper;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText loginPhoneNum, loginPassword;
-    private CheckBox checkboxRememberMe;
     private Button loginButton;
     private TextView sellerLink, notSellerLink, signUpLink;
     private String parentNode = "Users";
@@ -115,29 +114,29 @@ public class LoginActivity extends AppCompatActivity {
     private void userLoginSuccess(final String phone, final String password)
     {
         final DatabaseReference rootRef;
-        rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef = FirebaseDatabase.getInstance().getReference();  //Refer to firebase
 
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if(dataSnapshot.child(parentNode).child(phone).exists())
+                if(dataSnapshot.child(parentNode).child(phone).exists())  //Check whether exist
                 {
                     //pass value to Users class
                     Users userData = dataSnapshot.child(parentNode).child(phone).getValue(Users.class);
 
                     //Check whether phone and password by user input is equal to database
-                    if(userData.getPhone().equals(phone))
+                    if(userData.getPhone().equals(phone))  //If user input equals the phone data in firebase
                     {
-                        if(userData.getPassword().equals(password))
+                        if(userData.getPassword().equals(password))  //If user input equals the password data in firebase
                         {
-                            if (parentNode.equals("Sellers"))
+                            if (parentNode.equals("Sellers"))   //If the parentNode in firebase equals Sellers
                             {
                                 Toast.makeText(LoginActivity.this,"Seller Login successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, SellerCategoryActivity.class);
                                 startActivity(intent);
                             }
-                            else if (parentNode.equals("Users"))
+                            else if (parentNode.equals("Users"))  //If the parentNode in firebase equals Users
                             {
                                 Toast.makeText(LoginActivity.this,"Login successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -151,6 +150,12 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     }
+
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"This account does not exist, pls try again", Toast.LENGTH_SHORT).show();
+
                 }
 
             }

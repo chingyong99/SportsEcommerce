@@ -73,16 +73,16 @@ public class RegisterActivity extends AppCompatActivity {
     private void validateUser(final String name, final String phone, final String password)
     {
         final DatabaseReference rootRef;
-        rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef = FirebaseDatabase.getInstance().getReference();  //Refer to firebase
 
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if (!(dataSnapshot.child("Users").child(phone).exists()))
+                if (!(dataSnapshot.child("Users").child(phone).exists()))  //If Users.child(phone) does not exist
                 {
                     //if not exist then create new account (for users)
-                    HashMap<String, Object> userDataMap = new HashMap<>();
+                    HashMap<String, Object> userDataMap = new HashMap<>();  //Store the data
                     userDataMap.put("phone", phone);
                     userDataMap.put("password", password);
                     userDataMap.put("name", name);
@@ -92,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task)
                                 {
-                                    if(task.isSuccessful())
+                                    if(task.isSuccessful())   //After creating the account
                                     {
                                         Toast.makeText(RegisterActivity.this,"Your account have been created", Toast.LENGTH_SHORT).show();
 

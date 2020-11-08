@@ -74,13 +74,13 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //Set condition here
-                        if (type.equals("Seller")){
+                        if (type.equals("Seller")){  //If it is Seller
 
                             Intent intent = new Intent(HomeActivity.this, SellerManageProductsActivity.class);
                             intent.putExtra("pid", model.getPid());
                             startActivity(intent);
                         }
-                        else {
+                        else {   //Users enter here
                             Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
                             intent.putExtra("pid", model.getPid());
                             startActivity(intent);

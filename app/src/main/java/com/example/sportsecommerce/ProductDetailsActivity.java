@@ -76,6 +76,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private void addingToCartList() {
         String saveCurrentDate, saveCurrentTime;
 
+        //Call for the date and time
         Calendar calForDate = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
@@ -83,6 +84,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
+        //Refer to the Cart List in firebase, if no then create it
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
         //Save the data to database
@@ -103,8 +105,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            //Store into seller view of cart list
-
                             Toast.makeText(ProductDetailsActivity.this,
                                     "Added to Cart List", Toast.LENGTH_SHORT).show();
 
@@ -130,6 +130,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     ProductModel products = dataSnapshot.getValue(ProductModel.class);
 
+                    //Display the product details
                     productName.setText(products.getPname());
                     productPrice.setText(products.getPrice());
                     productDescription.setText(products.getDescription());

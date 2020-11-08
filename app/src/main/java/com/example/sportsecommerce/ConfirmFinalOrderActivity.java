@@ -73,7 +73,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     private void confirmOrder() {
 
         final String saveCurrentDate, saveCurrentTime;
-
+        //Call for the system date and time
         Calendar calForDate = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
@@ -84,7 +84,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference()
                 .child("Orders")
                 .child(Prevalent.onlineUser.getPhone());
-
+        //Store the data into firebase
         HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("totalAmount", totalAmount);
         ordersMap.put("name", nameEditText.getText().toString());
@@ -97,7 +97,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
+                //remove the data in User View of Cart List
                 if (task.isSuccessful()){
                     FirebaseDatabase.getInstance().getReference().child("Cart List")
                             .child("User View")
@@ -110,11 +110,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
                                     {
                                         Toast.makeText(ConfirmFinalOrderActivity.this, "The order has been placed successfully", Toast.LENGTH_SHORT).show();
 
-//                                        Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-//                                        //So the user cannot come back to this activity again
-//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                        startActivity(intent);
-//                                        finish();
                                     }
                                 }
                             });

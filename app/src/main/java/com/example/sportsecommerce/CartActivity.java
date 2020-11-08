@@ -71,8 +71,6 @@ public class CartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        checkOrderStatus();
-
         //Get reference from cart list
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
@@ -95,13 +93,14 @@ public class CartActivity extends AppCompatActivity {
                 int oneTypeProductTotalPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
                 overTotalPrice = overTotalPrice + oneTypeProductTotalPrice;
 
+                //display the total amount of the products inside the cart
                 txtTotalAmount.setText("Total Amount = RM" + String.valueOf(overTotalPrice));
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         CharSequence options[] = new CharSequence[]
-                                {
+                                { //There are two options here, edit or delete
                                         "Edit",
                                         "Delete"
                                 };
@@ -112,14 +111,14 @@ public class CartActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
 
-                                //For Edit
+                                //For Edit, user wil navigate back to product details activity to edit the quanity of the product
                                 if (i == 0){
                                     Intent intent = new Intent(CartActivity.this, ProductDetailsActivity.class);
                                     intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
                                 }
 
-                                //For Delete
+                                //For Delete, the specific product inside the shopping cart will be deleted
                                 if (i == 1){
                                     cartListRef.child("User View")
                                             .child(Prevalent.onlineUser.getPhone())
