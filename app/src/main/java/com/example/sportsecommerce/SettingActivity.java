@@ -93,7 +93,7 @@ public class SettingActivity extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        //Store Text info
+        //Store Text info //No image
         HashMap<String, Object> userMap = new HashMap<>();
         userMap.put("name", fullNameEditText.getText().toString());
         userMap.put("address", addressEditText.getText().toString());

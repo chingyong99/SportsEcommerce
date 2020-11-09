@@ -64,6 +64,7 @@ public class SellerManageProductsActivity extends AppCompatActivity {
     }
 
     private void deleteThisProduct() {
+        //Delete the specific product
         productsRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -96,6 +97,7 @@ public class SellerManageProductsActivity extends AppCompatActivity {
 
         }
         else{
+            //update and store the data
             HashMap<String, Object> productMap = new HashMap<>();
             productMap.put("pid", productID);
             productMap.put("description", pDescription);

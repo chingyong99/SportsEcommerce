@@ -57,11 +57,11 @@ public class SellerRegistrationActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)) {
             registerPassword.setError("Please enter the password");
         } else {
-            validateUser(name, phone, password);
+            validateSeller(name, phone, password);
         }
     }
 
-    private void validateUser(final String name, final String phone, final String password) {
+    private void validateSeller(final String name, final String phone, final String password) {
         final DatabaseReference rootRef;
         rootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -69,7 +69,7 @@ public class SellerRegistrationActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!(dataSnapshot.child("Sellers").child(phone).exists())) {
-                    //if not exist then create new account (for users)
+                    //if not exist then create new account (for sellers)
                     HashMap<String, Object> userDataMap = new HashMap<>();
                     userDataMap.put("phone", phone);
                     userDataMap.put("password", password);

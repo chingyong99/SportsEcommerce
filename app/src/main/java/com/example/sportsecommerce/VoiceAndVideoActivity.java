@@ -20,7 +20,7 @@ public class VoiceAndVideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_voice_and_video);
         setTitle("Voice and Video Conferencing");
 
-        try {
+        try {  //Start the conferencing
             JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
                     .setServerURL(new URL(""))
                     .setWelcomePageEnabled(false)
