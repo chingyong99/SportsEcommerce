@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "233512899041",
-    "firebase_url": "https://sportsecommerce-d0e9a.firebaseio.com",
-    "project_id": "sportsecommerce-d0e9a",
-    "storage_bucket": "sportsecommerce-d0e9a.appspot.com"
+    "project_number": "527772570202",
+    "firebase_url": "https://sportsequipmentsystem-82581.firebaseio.com",
+    "project_id": "sportsequipmentsystem-82581",
+    "storage_bucket": "sportsequipmentsystem-82581.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:233512899041:android:e113344143699bc26702a0",
+        "mobilesdk_app_id": "1:527772570202:android:d71047a274edfb9f02be63",
         "android_client_info": {
           "package_name": "com.example.sportsecommerce"
         }
       },
       "oauth_client": [
         {
-          "client_id": "233512899041-sggkp7ck0s66dkk1364ro0okk31ro4lh.apps.googleusercontent.com",
+          "client_id": "527772570202-u542qjng7lkkl70a3f07qk3osj1kegkb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.sportsecommerce",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "233512899041-mc0niuma91ac2eb41l9l5senfdk9jvn4.apps.googleusercontent.com",
+          "client_id": "527772570202-lp3guv9bmd96gfn61tnck2ikg99ms7fv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD4w5-8DdIuNzJquDIGb-SkbvfmkY8cKus"
+          "current_key": "AIzaSyB56H6xJXIJ9lvIwhTFEatZKxipERT-ibA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "233512899041-mc0niuma91ac2eb41l9l5senfdk9jvn4.apps.googleusercontent.com",
+              "client_id": "527772570202-lp3guv9bmd96gfn61tnck2ikg99ms7fv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
