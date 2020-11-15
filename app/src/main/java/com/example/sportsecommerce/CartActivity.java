@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -36,6 +37,8 @@ public class CartActivity extends AppCompatActivity {
     private Button continueBtn;
     private TextView txtTotalAmount, txtMsg1;
 
+    private int productTotalPrice = 0;
+    private int deliveryPrice = 4;
     private int overTotalPrice = 0;
 
     @Override
@@ -59,6 +62,7 @@ public class CartActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
                 intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                intent.putExtra("Product Price", String.valueOf(productTotalPrice));
                 startActivity(intent);
                 finish();
             }
@@ -85,13 +89,15 @@ public class CartActivity extends AppCompatActivity {
                 = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
+                //Picasso.get().load(model.getImage()).into(holder.imgProductImage);
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductQuantity.setText("Quantity: " + model.getQuantity());
                 holder.txtProductPrice.setText("RM" + model.getPrice());
 
                 //For each specific type of products
                 int oneTypeProductTotalPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
-                overTotalPrice = overTotalPrice + oneTypeProductTotalPrice;
+                productTotalPrice = productTotalPrice + oneTypeProductTotalPrice;
+                overTotalPrice = productTotalPrice + deliveryPrice;
 
                 //display the total amount of the products inside the cart
                 txtTotalAmount.setText("Total Amount = RM" + String.valueOf(overTotalPrice));

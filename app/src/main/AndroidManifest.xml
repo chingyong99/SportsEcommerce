@@ -12,8 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SellerRegistrationActivity"
-            android:parentActivityName=".LoginActivity"></activity>
+        <activity android:name=".PaymentReceiptActivity"></activity>
+        <activity
+            android:name=".SellerRegistrationActivity"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".PaymentDetailsActivity" />
         <activity
             android:name=".PaymentProcessActivity"
@@ -56,7 +58,9 @@
         <activity
             android:name=".AddNewProductActivity"
             android:parentActivityName=".SellerCategoryActivity" />
-        <activity android:name=".RegisterActivity" android:parentActivityName=".LoginActivity"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".MainActivity"

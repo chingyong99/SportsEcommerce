@@ -34,6 +34,7 @@ public class PaymentProcessActivity extends AppCompatActivity {
     TextView totalAmountTxt;
 
     String totalAmount ="";
+    String productAmount="";
 
     @Override
     protected void onDestroy() {
@@ -47,6 +48,7 @@ public class PaymentProcessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_process);
 
         totalAmount = getIntent().getStringExtra("Total Price");
+        productAmount = getIntent().getStringExtra("Product Price");
 
         //Start payPal service, set up the payPal service config
         Intent intent = new Intent(this,PayPalService.class);
@@ -96,7 +98,8 @@ public class PaymentProcessActivity extends AppCompatActivity {
 
                         startActivity(new Intent(this, PaymentDetailsActivity.class)
                                 .putExtra("PaymentDetails", paymentDetails)
-                                .putExtra("PaymentAmount", totalAmount));
+                                .putExtra("Total Price", totalAmount)
+                                .putExtra("Product Price",productAmount));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

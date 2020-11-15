@@ -27,6 +27,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     private Button confirmOrderBtn;
 
     private String totalAmount = "";
+    private String productAmount = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_final_order);
 
         totalAmount = getIntent().getStringExtra("Total Price");
+        productAmount = getIntent().getStringExtra("Product Price");
 
         nameEditText = (EditText) findViewById(R.id.shipment_name);
         phoneEditText = (EditText) findViewById(R.id.shipment_phone_number);
@@ -47,6 +49,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
                 Check();
                 Intent intent = new Intent(ConfirmFinalOrderActivity.this, PaymentProcessActivity.class);
                 intent.putExtra("Total Price", String.valueOf(totalAmount));
+                intent.putExtra("Product Price", String.valueOf(productAmount));
                 startActivity(intent);
             }
         });

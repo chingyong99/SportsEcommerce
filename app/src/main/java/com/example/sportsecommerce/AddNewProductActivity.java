@@ -32,9 +32,9 @@ import java.util.HashMap;
 
 public class AddNewProductActivity extends AppCompatActivity {
 
-    private String categoryName, productName, productDescription, productPrice, saveCurrentDate, saveCurrentTime;
+    private String categoryName, productName, productDescription, productPrice, saveCurrentDate, saveCurrentTime, sellerName;
     private Button addNewProductBtn;
-    private EditText addProductName, addProductDescription, addProductPrice;
+    private EditText addProductName, addProductDescription, addProductPrice, addProductSeller;
     private ImageView addProductImage;
     private static final int galleryPick = 1;
     private Uri imageUri;
@@ -59,6 +59,7 @@ public class AddNewProductActivity extends AppCompatActivity {
         addProductDescription = (EditText) findViewById(R.id.add_product_description);
         addProductPrice = (EditText) findViewById(R.id.add_product_price);
         addProductImage = (ImageView) findViewById(R.id.select_product_image);
+        addProductSeller = (EditText) findViewById(R.id.seller_name);
         loadingBar = new ProgressDialog(this);
 
         addProductImage.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +100,7 @@ public class AddNewProductActivity extends AppCompatActivity {
         productName = addProductName.getText().toString();
         productDescription = addProductDescription.getText().toString();
         productPrice = addProductPrice.getText().toString();
+        sellerName = addProductSeller.getText().toString();
 
         //If do not select the image
         if (imageUri == null) {
@@ -109,6 +111,8 @@ public class AddNewProductActivity extends AppCompatActivity {
             Toast.makeText(this, "Product description is required", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(productPrice)) {
             Toast.makeText(this, "Product price is required", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(sellerName)) {
+            Toast.makeText(this, "Seller name is required", Toast.LENGTH_SHORT).show();
         } else {
             StoreProductImageInformation();
         }
@@ -189,6 +193,7 @@ public class AddNewProductActivity extends AppCompatActivity {
         productMap.put("category", categoryName);
         productMap.put("price", productPrice);
         productMap.put("pname", productName);
+        productMap.put("sname", sellerName);
 
         productsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

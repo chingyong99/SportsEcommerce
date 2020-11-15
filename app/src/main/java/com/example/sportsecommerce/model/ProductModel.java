@@ -2,14 +2,14 @@ package com.example.sportsecommerce.model;
 
 public class ProductModel {
 
-    private String pname, price, description, image, category, pid, date, time;
+    private String pname, price, description, image, category, pid, date, time, sname;
 
 
     public ProductModel(){
 
     }
 
-    public ProductModel(String pname, String price, String description, String image, String category, String pid, String date, String time) {
+    public ProductModel(String pname, String price, String description, String image, String category, String pid, String date, String time, String sname) {
         this.pname = pname;
         this.price = price;
         this.description = description;
@@ -18,6 +18,7 @@ public class ProductModel {
         this.pid = pid;
         this.date = date;
         this.time = time;
+        this.sname = sname;
     }
 
     public String getPname() {
@@ -82,5 +83,13 @@ public class ProductModel {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 }

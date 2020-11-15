@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -29,10 +31,10 @@ import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    private Button addToCartBtn;
+    private Button addToCartBtn, buyNowButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
-    private TextView productName, productPrice, productDescription;
+    private TextView productName, productPrice, productDescription, productDelivery, productSeller;
     private String productID = "", status ="Normal";
 
     @Override
@@ -44,10 +46,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productID = getIntent().getStringExtra("pid");
 
         addToCartBtn = (Button) findViewById(R.id.add_to_cart_btn);
+        buyNowButton = (Button) findViewById(R.id.buy_now_btn);
         numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = (ImageView) findViewById(R.id.product_image_details);
         productName = (TextView) findViewById(R.id.product_name_details);
         productPrice = (TextView) findViewById(R.id.product_price_details);
+        productSeller = (TextView) findViewById(R.id.shop_name);
         productDescription = (TextView) findViewById(R.id.product_description_details);
 
         getProductDetails(productID);
@@ -61,7 +65,18 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
                 else{
                     addingToCartList();
+                    Intent intent = new Intent(ProductDetailsActivity.this, HomeActivity.class);
+                    startActivity(intent);
                 }
+            }
+        });
+
+        buyNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addingToCartList();
+                Intent intent = new Intent(ProductDetailsActivity.this, CartActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -95,7 +110,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
-        cartMap.put("discount", "");
 
         //Store into user view of cart list
         cartListRef.child("User View").child(Prevalent.onlineUser.getPhone())
@@ -107,9 +121,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(ProductDetailsActivity.this,
                                     "Added to Cart List", Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(ProductDetailsActivity.this, HomeActivity.class);
-                            startActivity(intent);
 
                         }
 
@@ -134,6 +145,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     productName.setText(products.getPname());
                     productPrice.setText(products.getPrice());
                     productDescription.setText(products.getDescription());
+                    productSeller.setText(products.getSname());
                     Picasso.get().load(products.getImage()).into(productImage);
 
                 }
