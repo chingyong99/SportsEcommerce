@@ -33,6 +33,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_final_order);
+        setTitle("Confirm Order");
 
         totalAmount = getIntent().getStringExtra("Total Price");
         productAmount = getIntent().getStringExtra("Product Price");
